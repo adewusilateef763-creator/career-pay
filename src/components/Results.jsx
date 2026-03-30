@@ -1,89 +1,115 @@
-import { IoCheckmark } from "react-icons/io5";
+import React from "react";
+import { IoCheckmarkCircle } from "react-icons/io5";
 import { HiArrowRight } from "react-icons/hi2";
+import { motion } from "framer-motion";
 
 const Results = () => {
+  const points = [
+    {
+      title: "Complete automation",
+      desc: "Full payroll processing ensuring compliance and accuracy.",
+    },
+    {
+      title: "Zero complexity",
+      desc: "Simplified ESOP management to attract and retain top talent.",
+    },
+    {
+      title: "Financial flexibility",
+      desc: "Talent credit financing options to manage cash flow challenges.",
+    },
+    {
+      title: "Smart efficiency",
+      desc: "Streamlined processes that save time and resources.",
+    },
+  ];
+
   return (
-    <section className="px-20 lg:px-[110px] pt-20 lg:pt-6 min-h-[60vh] lg:min-h-screen grid grid-cols-1 lg:grid-cols-2 items-center justify-between gap-10 lg:gap-28">
-      <div className="w-full lg:w-auto">
-        <img src="/fix.svg" alt="" className="w-full" />
-      </div>
+    <section className="bg-black py-32 px-6 lg:px-20 relative overflow-hidden">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+        {/* Image Side */}
+        <motion.div
+          initial={{ opacity: 0, x: -50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          className="relative"
+        >
+          <div className="relative rounded-3xl overflow-hidden border border-white/10 shadow-2xl shadow-blue-500/10">
+            <img
+              src="/Desktop - 17.png"
+              alt="Feature Showcase"
+              className="w-full h-auto"
+            />
+            <div className="absolute inset-0 bg-gradient-to-tr from-blue-600/10 to-transparent pointer-events-none" />
+          </div>
+          {/* Decorative blur */}
+          <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-blue-600/20 blur-3xl rounded-full -z-10" />
+        </motion.div>
 
-      <div>
-        <span className="tracking-wide uppercase text-[#121212]/70 text-3xl lg:text-sm font-medium">
-          Our Promise
-        </span>
-        <h2 className="text-[70px] lg:text-[50px] font-sfPro font-bold w-[90%] leading-none pt-5 lg:pt-3 pb-10 lg:pb-5">
-          Platform that solves everything
-        </h2>
-        <p className="font-sfPro font-normal text-[30px] lg:text-lg text-[#121212]/70 mb-[24px] leading-relaxed">
-          Get the freedom to make quick and easy structural financial decisions,
-          optimize processes, work smart, and transform your compensation
-          management experience.
-        </p>
+        {/* Content Side */}
+        <div className="flex flex-col items-start">
+          <motion.span
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-blue-500 text-sm font-semibold tracking-[0.2em] uppercase mb-4 block"
+          >
+            Our Promise
+          </motion.span>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="text-3xl lg:text-5xl font-bold text-white mb-8 leading-tight"
+          >
+            Platform that solves everything
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="text-gray-400 text-lg mb-10 leading-relaxed max-w-xl"
+          >
+            Get the freedom to make quick and easy structural financial decisions,
+            optimize processes, work smart, and transform your compensation
+            management experience.
+          </motion.p>
 
-        <div className="space-y-3">
-          <div className="flex items-start gap-3">
-            <div className=" bg-[#1D4EFF] rounded-sm flex items-center justify-center flex-shrink-0 mt-0.5">
-              <IoCheckmark className="text-[30px] lg:text-[20px] text-white" />
-            </div>
-            <div className="text-[30px] lg:text-lg">
-              <span className="font-sfPro capitalize font-semibold text-[#121212]">
-                Complete automation
-              </span>
-              <span className="font-sfPro font-normal text-[#121212]/70">
-                - Full payroll processing ensuring compliance and accuracy.
-              </span>
-            </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-12">
+            {points.map((point, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3 + index * 0.1 }}
+                className="flex items-start gap-3 group"
+              >
+                <IoCheckmarkCircle className="text-blue-500 text-xl flex-shrink-0 mt-1" />
+                <div>
+                  <h4 className="text-white font-bold mb-1 group-hover:text-blue-400 transition-colors">
+                    {point.title}
+                  </h4>
+                  <p className="text-gray-500 text-sm leading-snug">
+                    {point.desc}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
           </div>
 
-          <div className="flex items-start gap-3">
-            <div className=" bg-[#1D4EFF] rounded-sm flex items-center justify-center flex-shrink-0 mt-0.5">
-              <IoCheckmark className="text-[30px] lg:text-[20px] text-white" />
-            </div>
-            <div className="text-[30px] lg:text-lg">
-              <span className="font-sfPro capitalize font-semibold text-[#121212]">
-                Zero complexity
-              </span>
-              <span className="font-sfPro font-normal text-[#121212]/70">
-                - Simplified ESOP management to attract and retain top talent.
-              </span>
-            </div>
-          </div>
-
-          <div className="flex items-start gap-3">
-            <div className=" bg-[#1D4EFF] rounded-sm flex items-center justify-center flex-shrink-0 mt-0.5">
-              <IoCheckmark className="text-[30px] lg:text-[20px] text-white" />
-            </div>
-            <div className="text-[30px] lg:text-lg">
-              <span className="font-sfPro capitalize font-semibold text-[#121212]">
-                Financial flexibility
-              </span>
-              <span className="font-sfPro font-normal text-[#121212]/70">
-                - Talent credit financing options to manage cash flow
-                challenges.
-              </span>
-            </div>
-          </div>
-
-          <div className="flex items-start gap-3">
-            <div className=" bg-[#1D4EFF] rounded-sm flex items-center justify-center flex-shrink-0 mt-0.5">
-              <IoCheckmark className="text-[30px] lg:text-[20px] text-white" />
-            </div>
-            <div className="text-[30px] lg:text-lg">
-              <span className="font-sfPro capitalize font-semibold text-[#121212]">
-                Smart efficiency
-              </span>
-              <span className="font-sfPro font-normal text-[#121212]/70">
-                - Streamlined processes that save time and resources.
-              </span>
-            </div>
-          </div>
+          <motion.button
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.7 }}
+            className="bg-[#1D4EFF] hover:bg-blue-600 text-white px-8 py-4 rounded-xl font-bold transition-all flex items-center gap-3 group"
+          >
+            Become A Client
+            <HiArrowRight className="group-hover:translate-x-1 transition-transform" />
+          </motion.button>
         </div>
-
-        <button className="mt-8 bg-[#1D4EFF] text-white px-6 py-3 rounded-lg font-sfPro font-medium hover:bg-blue-700 transition-colors duration-200 flex items-center justify-center gap-2 h-[100px] lg:h-auto text-3xl lg:text-base w-full lg:w-auto">
-          Become A Client
-          <HiArrowRight className="text-[30px] lg:text-lg pt-1" />
-        </button>
       </div>
     </section>
   );

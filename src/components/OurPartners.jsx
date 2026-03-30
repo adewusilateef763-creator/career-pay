@@ -1,18 +1,32 @@
 import React from "react";
 import Partners from "./Partners";
+import { motion } from "framer-motion";
 
 const OurPartners = () => {
   return (
-    <section className="px-20 lg:px-[110px] py-40 lg:py-20 h-max">
-      <div className="flex flex-col items-center justify-center">
-        <h2 className="text-[40px] capitalize font-medium">Our partners</h2>
-        <p className="text-lg text-[#121212]/70 w-[90%] lg:w-[40%] mx-auto text-center">
+    <section className="bg-black px-6 lg:px-20 py-32 relative overflow-hidden">
+      <div className="max-w-7xl mx-auto text-center mb-16">
+        <motion.h2 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-3xl lg:text-5xl font-bold text-white mb-6"
+        >
+          Our Partners
+        </motion.h2>
+        <motion.p 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.1 }}
+          className="text-gray-400 text-lg lg:text-xl max-w-2xl mx-auto leading-relaxed"
+        >
           We’ve proferred solutions to market leading providers in the variety
           of clients providing efficient solutions specifically for the digital
           economy.
-        </p>
+        </motion.p>
       </div>
-      <div>
+      <div className="relative">
         <Partners />
       </div>
     </section>

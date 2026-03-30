@@ -1,162 +1,85 @@
 import React from "react";
 import { AiFillInstagram } from "react-icons/ai";
-import { FaFacebookSquare, FaLinkedin } from "react-icons/fa";
+import { FaFacebookSquare, FaLinkedin, FaTwitter } from "react-icons/fa";
 import { IoLogoYoutube } from "react-icons/io5";
 import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="px-20 lg:px-20 xl:px-[80px] bg-black py-20 text-white mt-40 lg:mt-20">
+    <footer className="bg-black pt-24 pb-12 px-6 lg:px-20 border-t border-white/5">
       <div className="max-w-7xl mx-auto">
-        {/* Logo Section - Mobile First */}
-        <div className="mb-12 lg:text-left">
-          <img
-            src="/careerpay-logo.png"
-            alt="CareerPay Logo"
-            className="w-[250px] lg:w-[180px] h-auto"
-          />
-        </div>
-
-        {/* Links and Newsletter Section */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 md:gap-8 lg:gap-12">
-          {/* Company Links */}
-          <div className="text-center md:text-left">
-            <h3 className="text-[30px] font-bold mb-6 text-white">Company</h3>
-            <ul className="space-y-4">
-              <li>
-                <Link
-                  to="/"
-                  className="text-gray-300 hover:text-white transition-colors duration-200 text-[25px] lg:text-base block py-1"
-                >
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/about"
-                  className="text-gray-300 hover:text-white transition-colors duration-200 text-[25px] lg:text-base block py-1"
-                >
-                  About
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/testimonials"
-                  className="text-gray-300 hover:text-white transition-colors duration-200 text-[25px] lg:text-base block py-1"
-                >
-                  Testimonials
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/contact"
-                  className="text-gray-300 hover:text-white transition-colors duration-200 text-[25px] lg:text-base block py-1"
-                >
-                  Contact
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Support Links */}
-          <div className="text-center md:text-left">
-            <h3 className="text-[30px] font-bold mb-6 text-white">Support</h3>
-            <ul className="space-y-4">
-              <li>
-                <Link
-                  to="/help"
-                  className="text-gray-300 hover:text-white transition-colors duration-200 text-[25px] lg:text-base block py-1"
-                >
-                  Help Center
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/faq"
-                  className="text-gray-300 hover:text-white transition-colors duration-200 text-[25px] lg:text-base block py-1"
-                >
-                  FAQ
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/privacy"
-                  className="text-gray-300 hover:text-white transition-colors duration-200 text-[25px] lg:text-base block py-1"
-                >
-                  Privacy Policy
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/terms"
-                  className="text-gray-300 hover:text-white transition-colors duration-200 text-[25px] lg:text-base block py-1"
-                >
-                  Terms of Service
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Newsletter Section */}
-          <div className="text-center md:text-left md:col-span-2 lg:col-span-1">
-            <h3 className="text-[30px] font-bold mb-6 text-white">
-              Stay up to date
-            </h3>
-            <div className="space-y-6">
-              <p className="text-[25px] lg:text-base text-gray-300 leading-relaxed max-w-xs mx-auto md:mx-0">
-                Get the latest updates and news delivered to your inbox
-              </p>
-
-              {/* Newsletter Form - Mobile Optimized */}
-              <div className="flex items-center justify-center gap-3 lg:gap-0">
-                <input
-                  type="email"
-                  placeholder="Enter your email address"
-                  className="w-full px-4 py-4 rounded-l-lg text-black text-[25px] lg:text-base focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder:text-gray-500 h-[100px] lg:h-auto "
-                />
-                <button className="w-full md:w-auto px-8 py-4 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 rounded-r-lg transition-colors duration-200  font-semibold text-white h-[100px] lg:h-auto text-3xl lg:text-base">
-                  Subscribe
-                </button>
-              </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+          {/* Brand Column */}
+          <div className="lg:col-span-1">
+            <Link to="/" className="inline-block mb-8">
+              <img
+                src="/careerpay-logo.png"
+                alt="CareerPay"
+                className="w-40 h-auto"
+              />
+            </Link>
+            <p className="text-gray-500 text-sm leading-relaxed mb-8 max-w-xs">
+              Simplifying compensation management for organizations through innovation and commitment.
+            </p>
+            <div className="flex items-center gap-4">
+              <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:bg-blue-600 hover:text-white transition-all">
+                <FaTwitter />
+              </a>
+              <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:bg-blue-600 hover:text-white transition-all">
+                <FaLinkedin />
+              </a>
+              <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:bg-blue-600 hover:text-white transition-all">
+                <AiFillInstagram />
+              </a>
             </div>
           </div>
-        </div>
-      </div>
 
-      {/* Bottom Border/Copyright */}
-      <div className="mt-16 pt-8 border-t border-gray-800">
-        <div className="flex flex-col space-y-6 md:flex-row md:justify-between md:items-center md:space-y-0">
-          <p className="text-lg lg:text-sm text-gray-400 text-center md:text-left">
-            © 2025 CareerPay. All rights reserved.
-          </p>
+          {/* Links Columns */}
+          <div>
+            <h4 className="text-white font-bold mb-8 uppercase tracking-widest text-xs">Company</h4>
+            <ul className="space-y-4">
+              <li><Link to="/" className="text-gray-500 hover:text-white transition-colors text-sm">Home</Link></li>
+              <li><Link to="/about" className="text-gray-500 hover:text-white transition-colors text-sm">About Us</Link></li>
+              <li><Link to="/careers" className="text-gray-500 hover:text-white transition-colors text-sm">Careers</Link></li>
+              <li><Link to="/contact" className="text-gray-500 hover:text-white transition-colors text-sm">Contact</Link></li>
+            </ul>
+          </div>
 
           <div>
-            <div className="flex items-center justify-center lg:justify-between w-full lg:w-[70%] mb-2 space-x-2">
-              <AiFillInstagram className="text-[30px] lg:text-[25px] hover:text-white text-gray-400" />
-              <FaLinkedin className="text-[30px] lg:text-[25px] hover:text-white text-gray-400" />
-              <FaFacebookSquare className="text-[30px] lg:text-[25px] hover:text-white text-gray-400" />
-              <IoLogoYoutube className="text-[30px] lg:text-[25px] hover:text-white text-gray-400" />
-            </div>
-            <div className="flex justify-center md:justify-end space-x-8">
-              <Link
-                to="/privacy"
-                className="text-lg lg:text-sm text-gray-400 hover:text-white transition-colors"
-              >
-                Privacy
-              </Link>
-              <Link
-                to="/terms"
-                className="text-lg lg:text-sm text-gray-400 hover:text-white transition-colors"
-              >
-                Terms
-              </Link>
-              <Link
-                to="/cookies"
-                className="text-lg lg:text-sm text-gray-400 hover:text-white transition-colors"
-              >
-                Cookies
-              </Link>
-            </div>
+            <h4 className="text-white font-bold mb-8 uppercase tracking-widest text-xs">Support</h4>
+            <ul className="space-y-4">
+              <li><Link to="/help" className="text-gray-500 hover:text-white transition-colors text-sm">Help Center</Link></li>
+              <li><Link to="/faq" className="text-gray-500 hover:text-white transition-colors text-sm">FAQ</Link></li>
+              <li><Link to="/privacy" className="text-gray-500 hover:text-white transition-colors text-sm">Privacy Policy</Link></li>
+              <li><Link to="/terms" className="text-gray-500 hover:text-white transition-colors text-sm">Terms of Service</Link></li>
+            </ul>
+          </div>
+
+          {/* Newsletter Column */}
+          <div>
+            <h4 className="text-white font-bold mb-8 uppercase tracking-widest text-xs">Stay Updated</h4>
+            <p className="text-gray-500 text-sm mb-6">Subscribe to our newsletter for the latest updates.</p>
+            <form className="relative">
+              <input
+                type="email"
+                placeholder="Email address"
+                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+              />
+              <button className="absolute right-2 top-2 bottom-2 bg-blue-600 hover:bg-blue-700 text-white px-4 rounded-lg text-xs font-bold transition-all">
+                Join
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-gray-600 text-xs">
+            © 2026 CareerPay. All rights reserved.
+          </p>
+          <div className="flex gap-8">
+            <Link to="/privacy" className="text-gray-600 hover:text-white text-xs transition-colors">Privacy Policy</Link>
+            <Link to="/terms" className="text-gray-600 hover:text-white text-xs transition-colors">Terms of Service</Link>
+            <Link to="/cookies" className="text-gray-600 hover:text-white text-xs transition-colors">Cookie Policy</Link>
           </div>
         </div>
       </div>

@@ -1,210 +1,153 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { HiMenu, HiX } from "react-icons/hi";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState();
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("token"));
+  const navigate = useNavigate();
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+  const closeMenu = () => setIsMenuOpen(false);
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    setIsLoggedIn(false);
+    closeMenu();
+    navigate("/");
   };
-
-  const closeMenu = () => {
-    setIsMenuOpen(false);
-  };
-
-  useEffect(() => {
-    if (isMenuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-    }
-
-    // Cleanup function to reset when component unmounts
-    return () => {
-      document.body.style.overflow = "unset";
-    };
-  }, [isMenuOpen]);
 
   useEffect(() => {
     const handleScroll = () => {
-      // Use a specific pixel value instead of section height
-      const scrollThreshold = window.innerHeight * 0.5;
-      setIsScrolled(window.scrollY > scrollThreshold);
+      setIsScrolled(window.scrollY > 20);
     };
-
     window.addEventListener("scroll", handleScroll);
-    handleScroll(); // Call once on mount to set initial state
-
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
     <nav
-      className={`min-h-[91px] fixed z-40 text-white w-full flex items-center justify-between px-[35px] lg:px-16 py-10 text-base lg:text-lg tracking-wide transition-all duration-300 ${
-        isScrolled && !isMenuOpen
-          ? "bg-black/30 backdrop-blur-md shadow-lg shadow-slate-500/20 -top-[2px]"
-          : "bg-transparent"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled
+          ? "bg-black/60 backdrop-blur-lg border-b border-white/10 py-4"
+          : "bg-transparent py-6"
       }`}
     >
-      {/* Logo */}
-      <Link to="/" onClick={closeMenu}>
-        <img
-          src="/careerpay-logo.png"
-          alt="Careerpay"
-          className="w-[250px] lg:w-[180px] h-auto"
-        />
-      </Link>
-
-      {/* Desktop Navigation */}
-      <ul className="hidden lg:flex space-x-6">
-        <li>
-          <Link
-            to="/"
-            className="hover:text-gray-300 transition-colors duration-200"
-          >
-            Home
-          </Link>
-        </li>
-        <li>
-          <Link
-            to="/about"
-            className="hover:text-gray-300 transition-colors duration-200"
-          >
-            About
-          </Link>
-        </li>
-        <li>
-          <Link
-            to="/testimonials"
-            className="hover:text-gray-300 transition-colors duration-200"
-          >
-            Testimonials
-          </Link>
-        </li>
-        <li>
-          <Link
-            to="/contact"
-            className="hover:text-gray-300 transition-colors duration-200"
-          >
-            Contact
-          </Link>
-        </li>
-      </ul>
-
-      {/* Desktop Auth Buttons */}
-      <div className="hidden lg:flex space-x-4">
-        <button
-          type="button"
-          className="px-6 py-3 rounded-md hover:bg-white hover:text-[#121212] duration-300 ease-in-out transition-all"
-        >
-          Log In
-        </button>
-        <button
-          type="button"
-          className="border border-white px-6 py-3 rounded-md hover:bg-white hover:text-[#121212] duration-300 ease-in-out transition-all"
-        >
-          Sign Up
-        </button>
-      </div>
-
-      {/* Mobile Menu Button */}
-      <button
-        onClick={toggleMenu}
-        className="lg:hidden flex items-center justify-center  group"
-        aria-label="Toggle menu"
-      >
-        <HiMenu className="text-[70px] text-white transition-all duration-300" />
-      </button>
-
-      {/* Mobile Menu Overlay */}
-      {isMenuOpen && (
-        <div
-          className="lg:hidden fixed inset-0 bg-black bg-opacity-50 z-40"
-          onClick={closeMenu}
-        ></div>
-      )}
-
-      {/* Mobile Menu */}
-      <div
-        className={`lg:hidden fixed top-0 right-0 w-[60%] h-full bg-black border-l border-white/10 z-50 transform transition-transform duration-300 ease-in-out ${
-          isMenuOpen ? "translate-x-0" : "translate-x-full"
-        }`}
-      >
-        {/* Mobile Menu Header */}
-        <div className="flex items-center justify-between h-[120px] p-6 border-b border-gray-700">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between">
+        {/* Logo */}
+        <Link to="/" className="flex items-center gap-2">
           <img
             src="/careerpay-logo.png"
             alt="Careerpay"
-            className="w-[150px] h-auto"
+            className="w-32 lg:w-40 h-auto"
           />
-          <button
-            onClick={closeMenu}
-            className="text-white text-2xl hover:text-gray-300 transition-colors"
-            aria-label="Close menu"
-          >
-            <HiX className="text-[70px]" />
-          </button>
+        </Link>
+
+        {/* Desktop Navigation */}
+        <div className="hidden lg:flex items-center gap-8">
+          <Link to="/" className="text-gray-300 hover:text-white transition-colors text-sm font-medium">Home</Link>
+          <Link to="/about" className="text-gray-300 hover:text-white transition-colors text-sm font-medium">About</Link>
+          <Link to="/testimonials" className="text-gray-300 hover:text-white transition-colors text-sm font-medium">Testimonials</Link>
+          <Link to="/careers" className="text-gray-300 hover:text-white transition-colors text-sm font-medium">Careers</Link>
+          <Link to="/faq" className="text-gray-300 hover:text-white transition-colors text-sm font-medium">FAQ</Link>
+          <Link to="/contact" className="text-gray-300 hover:text-white transition-colors text-sm font-medium">Contact</Link>
         </div>
 
-        {/* Mobile Navigation Links */}
-        <div className="px-6 py-16">
-          <ul className="space-y-16 mb-8">
-            <li>
+        {/* Desktop Auth */}
+        <div className="hidden lg:flex items-center gap-4">
+          {isLoggedIn ? (
+            <>
               <Link
-                to="/"
-                onClick={closeMenu}
-                className="block font-medium hover:text-gray-300 transition-colors duration-200 py-2 text-4xl"
+                to="/dashboard"
+                className="text-white bg-white/10 hover:bg-white/20 px-6 py-2.5 rounded-lg text-sm font-semibold transition-all"
               >
-                Home
+                Dashboard
               </Link>
-            </li>
-            <li>
+              <button
+                onClick={handleLogout}
+                className="text-gray-300 hover:text-white text-sm font-medium"
+              >
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
               <Link
-                to="/about"
-                onClick={closeMenu}
-                className="block font-medium hover:text-gray-300 transition-colors duration-200 py-2 text-4xl"
+                to="/login"
+                className="text-gray-300 hover:text-white text-sm font-medium px-4"
               >
-                About
+                Log In
               </Link>
-            </li>
-            <li>
               <Link
-                to="/testimonials"
-                onClick={closeMenu}
-                className="block font-medium hover:text-gray-300 transition-colors duration-200 py-2 text-4xl"
+                to="/signup"
+                className="bg-white text-black hover:bg-gray-200 px-6 py-2.5 rounded-lg text-sm font-semibold transition-all"
               >
-                Testimonials
+                Sign Up
               </Link>
-            </li>
-            <li>
-              <Link
-                to="/contact"
-                onClick={closeMenu}
-                className="block font-medium hover:text-gray-300 transition-colors duration-200 py-2 text-4xl"
-              >
-                Contact
-              </Link>
-            </li>
-          </ul>
+            </>
+          )}
+        </div>
 
-          {/* Mobile Auth Buttons */}
-          <div className="space-y-6">
-            <button
-              type="button"
-              onClick={closeMenu}
-              className="w-full h-[100px] px-6 py-3 rounded-md hover:bg-white hover:text-[#121212] duration-300 ease-in-out transition-all text-center text-3xl"
-            >
-              Log In
-            </button>
-            <button
-              type="button"
-              onClick={closeMenu}
-              className="w-full h-[100px] border border-white px-6 py-3 rounded-md hover:bg-white hover:text-[#121212] duration-300 ease-in-out transition-all text-center text-3xl"
-            >
-              Sign Up
-            </button>
+        {/* Mobile Toggle */}
+        <button
+          onClick={toggleMenu}
+          className="lg:hidden text-white p-2"
+          aria-label="Toggle menu"
+        >
+          {isMenuOpen ? <HiX size={32} /> : <HiMenu size={32} />}
+        </button>
+      </div>
+
+      {/* Mobile Menu */}
+      <div
+        className={`lg:hidden fixed inset-0 bg-black z-40 transition-transform duration-300 ease-in-out ${
+          isMenuOpen ? "translate-x-0" : "translate-x-full"
+        }`}
+      >
+        <div className="flex flex-col h-full p-8 pt-24 gap-8">
+          <Link to="/" onClick={closeMenu} className="text-2xl font-bold text-white">Home</Link>
+          <Link to="/about" onClick={closeMenu} className="text-2xl font-bold text-white">About</Link>
+          <Link to="/testimonials" onClick={closeMenu} className="text-2xl font-bold text-white">Testimonials</Link>
+          <Link to="/careers" onClick={closeMenu} className="text-2xl font-bold text-white">Careers</Link>
+          <Link to="/contact" onClick={closeMenu} className="text-2xl font-bold text-white">Contact</Link>
+          
+          <div className="mt-auto flex flex-col gap-4">
+            {isLoggedIn ? (
+              <>
+                <Link
+                  to="/dashboard"
+                  onClick={closeMenu}
+                  className="bg-[#1D4EFF] text-white text-center py-4 rounded-xl font-bold"
+                >
+                  Dashboard
+                </Link>
+                <button
+                  onClick={handleLogout}
+                  className="text-gray-400 text-center py-4"
+                >
+                  Logout
+                </button>
+              </>
+            ) : (
+              <>
+                <Link
+                  to="/login"
+                  onClick={closeMenu}
+                  className="text-white text-center py-4 border border-white/20 rounded-xl font-bold"
+                >
+                  Log In
+                </Link>
+                <Link
+                  to="/signup"
+                  onClick={closeMenu}
+                  className="bg-white text-black text-center py-4 rounded-xl font-bold"
+                >
+                  Sign Up
+                </Link>
+              </>
+            )}
           </div>
         </div>
       </div>

@@ -1,41 +1,87 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const HeroHome = () => {
   return (
-    <section className="bg-homeHero h-auto min-h-[50vh] lg:min-h-screen flex flex-col items-center justify-center text-white px-20 xl:px-[110px] pt-[200px] lg:pt-[100px]">
-      <div className="max-w-7xl mx-auto w-full flex flex-col lg:flex-row items-center justify-between gap-6 lg:gap-14">
-        {/* Text Content */}
-        <div className="w-full lg:w-1/2 flex flex-col items-center lg:items-start text-center lg:text-left">
-          <h1 className="font-sfPro font-bold text-[70px] lg:text-[42px] xl:text-[50px] leading-tight pt-10 lg:pt-0">
-            Simplifying Compensation Management for Organizations
-          </h1>
+    <section className="bg-[#000000] min-h-screen flex flex-col items-center pt-[150px] lg:pt-[180px] px-6 lg:px-20 relative overflow-hidden">
+      {/* Background Glows */}
+      <div className="absolute top-[-100px] left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-blue-600/20 blur-[120px] rounded-full -z-10" />
+      <div className="absolute top-[200px] right-[-100px] w-[400px] h-[400px] bg-purple-600/10 blur-[100px] rounded-full -z-10" />
 
-          <p className="text-[35px] lg:text-[20px] font-sfPro font-normal mt-8 lg:mt-[18px] leading-relaxed lg:leading-[35px]">
-            Empowering organizations with Talent Credit Financing, Employee
-            Stock Ownership Plan, and Payroll Management System.
-          </p>
+      <div className="max-w-5xl mx-auto w-full text-center flex flex-col items-center">
+        {/* Badge */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="bg-white/5 border border-white/10 px-4 py-1.5 rounded-full mb-8"
+        >
+          <span className="text-blue-400 text-sm font-medium tracking-wide uppercase">
+            Transforming Compensation Management
+          </span>
+        </motion.div>
 
-          {/* Buttons */}
-          <div className="mt-14 flex flex-col lg:flex-row gap-8 lg:gap-5 font-sfPro font-normal w-full">
-            <button className="w-full sm:w-auto min-w-[160px] bg-[#1D4EFF] hover:bg-[#1D4EFF]/80 px-6 py-3 lg:px-8 lg:py-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg shadow-blue-600/30 hover:shadow-xl hover:shadow-blue-500/40 active:scale-95 active:translate-y-1 h-[100px] lg:h-auto text-3xl lg:text-base">
-              Get Started
-            </button>
-            <button className="w-full sm:w-auto min-w-[160px] border-[0.5px] border-gray-400 hover:border-white px-6 py-3 lg:px-8 lg:py-4 rounded-lg font-semibold bg-gray-800/50 hover:bg-gray-700/50 transition-all duration-300 transform hover:scale-105 shadow-lg shadow-black/30 active:scale-95 h-[100px] lg:h-auto text-3xl lg:text-base">
-              Get A Demo
-            </button>
-          </div>
-        </div>
+        {/* Heading */}
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="font-bold text-4xl lg:text-[64px] leading-[1.1] text-white max-w-4xl mb-8 tracking-tight"
+        >
+          Simplifying Compensation Management for Organizations
+        </motion.h1>
 
-        {/* Image */}
-        <div className="w-full lg:w-1/2 flex justify-center">
-          <div className="w-full">
+        {/* Subheading */}
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="text-gray-400 text-lg lg:text-xl max-w-2xl mb-12 leading-relaxed"
+        >
+          Empowering organizations with Talent Credit Financing, Employee Stock
+          Ownership Plan, and Payroll Management System.
+        </motion.p>
+
+        {/* CTA Buttons */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto mb-20"
+        >
+          <Link
+            to="/signup"
+            className="bg-[#1D4EFF] hover:bg-[#1D4EFF]/90 text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg shadow-blue-600/20 active:scale-95"
+          >
+            Get Started
+          </Link>
+          <button className="bg-white/5 hover:bg-white/10 text-white border border-white/10 px-8 py-4 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 active:scale-95">
+            Book a Demo
+          </button>
+        </motion.div>
+
+        {/* Hero Image / Dashboard Preview */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="relative w-full max-w-6xl mx-auto"
+        >
+          <div className="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl shadow-blue-500/10">
             <img
-              src="/heroImage.svg"
-              alt="Hero illustration"
-              className="w-full h-auto object-contain"
+              src="/Desktop - 28.png"
+              alt="Dashboard Preview"
+              className="w-full h-auto object-cover"
             />
+            {/* Glass Overlay for depth */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
           </div>
-        </div>
+
+          {/* Decorative Elements around image */}
+          <div className="absolute -top-6 -right-6 w-24 h-24 bg-blue-500/20 blur-2xl rounded-full" />
+          <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-purple-500/20 blur-2xl rounded-full" />
+        </motion.div>
       </div>
     </section>
   );

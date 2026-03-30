@@ -1,32 +1,57 @@
 import React from "react";
+import { motion } from "framer-motion";
 
 const Help = () => {
-  return (
-    <section className="px-0 lg:px-[70px] text-white">
-      <div className="bg-homeHero p-20 lg:p-0 min-h-[447px] rounded-lg text-white flex flex-col lg:flex-row items-center justify-between">
-        <div className="py-[40px] p-[20px] lg:pl-[60px] w-full lg:w-1/2">
-          <h2 className="text-[60px] lg:text-[50px] leading-[1.2] mb-4 capitalize text-start lg:text-start">
-            Helping startups navigating financial challenges, Our Results
-            Speaks.
-          </h2>
+  const stats = [
+    { value: "100+", label: "Clients Served", color: "from-blue-400 to-blue-600" },
+    { value: "₦5B+", label: "Payroll Processed", color: "from-purple-400 to-purple-600" },
+    { value: "500+", label: "ESOP Managed", color: "from-blue-500 to-indigo-600" },
+  ];
 
-          <p className="text-[30px] lg:text-lg text-white/70 font-sfPro font-light">
-            We reached this milestone through innovation and commitment to our
-            clients. Experience the impact first hand.
-          </p>
-        </div>
-        <div className="w-full lg:w-1/2 p-[20px] lg:p-[60px] grid grid-cols-3 items-center justify-center gap-5">
-          <div className="border-[0.5px] border-slate-100 py-3 px-4 rounded-md cursor-pointer hover:scale-105 transition-all duration-300">
-            <h3 className="font-medium text-3xl font-sfPro">100</h3>
-            <p className="text-sm mt-1 tracking-wider">Clients Served</p>
+  return (
+    <section className="bg-black py-32 px-6 lg:px-20 relative overflow-hidden">
+      <div className="max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+          <div>
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-3xl lg:text-5xl font-bold text-white mb-8 leading-tight"
+            >
+              Helping startups navigating financial challenges.
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="text-gray-400 text-lg lg:text-xl leading-relaxed"
+            >
+              We reached this milestone through innovation and commitment to our
+              clients. Experience the impact first hand with our data-driven
+              solutions.
+            </motion.p>
           </div>
-          <div className="border-[0.5px] border-slate-100 py-3 px-4 rounded-md cursor-pointer hover:scale-105 transition-all duration-300">
-            <h3 className="font-medium text-3xl font-sfPro">50</h3>
-            <p className="text-sm mt-1 tracking-wider">Payroll Processed</p>
-          </div>
-          <div className="border-[0.5px] border-slate-100 py-3 px-4 rounded-md cursor-pointer hover:scale-105 transition-all duration-300">
-            <h3 className="font-medium text-3xl font-sfPro">30</h3>
-            <p className="text-sm mt-1 tracking-wider">ESOP Managed</p>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            {stats.map((stat, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="bg-white/5 border border-white/10 p-8 rounded-3xl text-center group hover:bg-white/10 transition-all duration-300"
+              >
+                <h3 className={`text-4xl font-bold mb-2 bg-gradient-to-r ${stat.color} bg-clip-text text-transparent group-hover:scale-110 transition-transform duration-300`}>
+                  {stat.value}
+                </h3>
+                <p className="text-gray-500 text-sm font-medium uppercase tracking-wider">
+                  {stat.label}
+                </p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </div>
